@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Love Coupons</title>
+	</head>
+	<body>
+		<ul class="quotes">
+		<% for(var i = 0; i < coupons.length; i++) {%>
+			<li class="coupons">
+				<span><%= coupons[i].name %></span>
+				<span><%= coupons[i].expiration %></span>
+			</li>
+
+			<% } %>
+		</ul>
+
+
+		<form action="/addCoupon" method="POST">
+			<input type="text" placeholder="name" name="name">
+			<input type="text" placeholder="expiration" name="expiration">
+			<button type="submit">Add Coupon</button>
+		</form>
+	</body>
+</html>

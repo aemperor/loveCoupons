@@ -1,0 +1,15 @@
+{
+  "name": "love-coupons",
+  "version": "0.0.0",
+  "description": "quick express js app for giving coupons to a loved one",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "1.17.1",
+    "ejs": "2.5.6",
+    "express": "4.15.2",
+    "mongodb": "2.2.26"
+  }
+}
