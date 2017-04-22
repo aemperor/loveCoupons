@@ -1,7 +1,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
+var bcrypt = require('bcrypt');
+
 var devMongUrl = 'mongodb://localhost:27017/lovecoupons';
+var SALT_ROUNDS = 10;
 
 var db;
 var app = express();
@@ -21,6 +24,38 @@ MongoClient.connect(devMongUrl, function(err, database) {
 
 
 app.get('/', function(req, res) {
+	res.sendFile(__dirname + '/login.html');
+});
+
+app.post('/login', function(req, res) {
+	db.collection('users').find({username: req.body.username}).toArray(function(err, result) {
+		var compare;
+		if (result) {
+			compare = bcrypt.compareSync(req.body.password, result[0].password);
+		}
+
+		compare ? res.redirect('/home') : res.redirect('/');
+	});
+});
+
+app.get('/register', function(req, res) {
+	res.sendFile(__dirname + '/register.html');
+});
+
+app.post('/register', function(req, res) {
+	var hashedPassword = bcrypt.hashSync(req.body.password, SALT_ROUNDS);
+	req.body.password = hashedPassword;
+	db.collection('users').save(req.body, function(err, result) {
+		if (err) {
+			console.log(err);
+		}
+
+		console.log('saved user to database');
+		res.redirect('/');
+	});
+});
+
+app.get('/home', function(req, res) {
 	res.sendFile(__dirname + '/index.html');
 });
 
