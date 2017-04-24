@@ -29,8 +29,9 @@ app.get('/', function(req, res) {
 
 app.post('/login', function(req, res) {
 	db.collection('users').find({username: req.body.username}).toArray(function(err, result) {
-		var compare;
+		var compare;	
 		if (result) {
+			console.log(result[0]);
 			compare = bcrypt.compareSync(req.body.password, result[0].password);
 		}
 
@@ -66,7 +67,7 @@ app.post('/addCoupon', function(req, res) {
 		}
 
 		console.log('saved to database');
-		res.redirect('/');
+		res.redirect('/home');
 	});
 });
 

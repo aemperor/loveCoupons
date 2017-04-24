@@ -4,7 +4,8 @@
   "description": "quick express js app for giving coupons to a loved one",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "mongo": "mongod --dbpath=data"
   },
   "dependencies": {
     "body-parser": "1.17.1",

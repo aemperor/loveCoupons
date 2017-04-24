@@ -13,3 +13,10 @@ LoveCoupons will eventually be a way to give a loved one a coupon. Examples of c
 * Mobile Support
 * Accounts/Authentication
 
+# Running the App
+* Install MongoDB
+* Then run
+```bash 
+npm run mongo
+npm start
+```
