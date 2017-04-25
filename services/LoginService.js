@@ -4,6 +4,7 @@ var bcrypt = require('bcrypt');
 var userTable = require('../constants/db.json').USER_TABLE;
 var SALT_ROUNDS = 10;
 var currentUser;
+var authenticated = false;
 
 class LoginService {
 	/**
