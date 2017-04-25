@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "mongo": "mongod --dbpath=data"
+    "mongo": "mongod --dbpath=data",
+    "debug": "node-debug index.js"
+
   },
   "dependencies": {
     "body-parser": "1.17.1",
