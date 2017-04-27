@@ -14,13 +14,18 @@ class CouponService {
 	addCoupon(db, req, callback) {
 		var coupon = req.body;
 		coupon.username = loginService.getCurrentUser();
-		db.collection(couponTable).save(coupon, function(err, result) {
-			if (err) {
-				callback('Cannot add coupon');
-			}
+		if (coupon.username) {
+			db.collection(couponTable).save(coupon, function(err, result) {
+				if (err) {
+					callback('Cannot add coupon');
+				}
 
-			callback(null, 'Coupon added');
-		});
+				callback(null, 'Coupon added');
+			});
+		}
+		else {
+			callback('User not authenticated');
+		}
 	}
 
 	/**

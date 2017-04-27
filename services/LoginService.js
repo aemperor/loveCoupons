@@ -21,6 +21,7 @@ class LoginService {
 				console.log(result[0]);
 				console.log(req.body.password);
 				currentUser = req.body.username;
+				authenticated = true;
 				callback(err, bcrypt.compareSync(req.body.password, result[0].password));
 			}
 		});
@@ -48,7 +49,11 @@ class LoginService {
 	 * @return {String} Current logged in username
 	 */
 	getCurrentUser() {
-		return currentUser;
+		if (authenticated) {
+			return currentUser;
+		}
+		
+		return null;
 	}
 
 }
